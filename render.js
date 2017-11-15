@@ -1,6 +1,8 @@
+'use strict';
+
 var render = (function(window, document, undefined) {
 
-    var public = {
+    var expose = {
 
         component: component,
         init: searchForComponents
@@ -8,7 +10,7 @@ var render = (function(window, document, undefined) {
     };
 
 
-    return public;
+    return expose;
 
     /////////////////////////////////
     /*private variables declared here*/
@@ -22,11 +24,13 @@ var render = (function(window, document, undefined) {
         componentList = document.querySelectorAll('[rn-component]');
 
 
+
     }
 
     function component(selector, componentFunction) {
 
         var currentComponentDOM = findAndReturnComponent(selector);
+        currentComponentDOM.className+="rn-component";
         console.log('component initialized', currentComponentDOM.attributes);
 
         var currentComponentFunction = new componentFunction();
@@ -40,6 +44,7 @@ var render = (function(window, document, undefined) {
         for (var variables in currentComponentFunction) {
 
             var myReg = new RegExp('{{' + variables + '}}','g');
+
             var res = str.replace(myReg, currentComponentFunction[variables]); //'/{{'+currentComponentFunction[item]+'}}/g'
 
             componentFragment.innerHTML = res;
@@ -59,6 +64,7 @@ var render = (function(window, document, undefined) {
            
             if (object.attributes[0].nodeValue == selector) {
                 console.log('childObject.name');
+
                 objectToReturn = object;
             }
 
