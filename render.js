@@ -74,10 +74,3 @@ var render = (function(window, document, undefined) {
 
 
 })(window, document);
-
-
-/*
-
- var oldNode = '{{name}}';
- var newNode = 'clarence';
- document.querySelectorAll("[rn-component='" + 'my-component' +"']")[0].innerHTML.replace(oldNode, newNode);*/
