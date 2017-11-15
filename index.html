@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Render js</title>
+</head>
+
+<body>
+    <div rn-component="my-component">
+        <span>
+        <span>
+		{{name}}
+        {{company}}
+        {{age}}
+		</span>
+        </span>
+    </div>
+
+
+
+     <div rn-component="my-component2">
+        <span>
+        <span>
+        {{name}}
+        {{name}}
+        </span>
+        </span>
+    </div>
+    <script src="render.js"></script>
+    <script>
+    render.init();
+    render.component('my-component', function() {
+        this.name = 'clarence';
+        this.company='Robosoft';
+        this.age=22;
+    });
+
+     render.component('my-component2', function() {
+        this.name = 'merchant';
+    });
+    </script>
+</body>
+
+</html>

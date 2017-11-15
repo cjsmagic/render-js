@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Array combined</title>
+</head>
+
+<body>
+    <script>
+    var originalProducts = [{
+        "ImageUrl": "https:\/\/images.mcdelivery.co.in\/hardcastle-restaurants-pvt-ltd\/image\/upload\/fl_lossy,q_auto:low,IMGSIZE\/v1484928334\/Items\/3333.png",
+        "Size": 0,
+        "ProductID": "3333",
+        "Amount": "551.70",
+        "Currency": "₹",
+        "Quantity": "1",
+        "Title": "Strawberry Oreo Whirl",
+        "CustomisedDescription": "",
+        "SequenceID": 1,
+        "IsPromoItem": false,
+        "TypeID": 5001
+    }, {
+        "ImageUrl": "https:\/\/images.mcdelivery.co.in\/hardcastle-restaurants-pvt-ltd\/image\/upload\/fl_lossy,q_auto:low,IMGSIZE\/v1479732124\/Items\/310.png",
+        "Size": 1,
+        "ProductID": "310",
+        "Amount": "0.00",
+        "Currency": "₹",
+        "Quantity": "1",
+        "Title": "Promo McChicken",
+        "CustomisedDescription": "",
+        "SequenceID": 3,
+        "IsPromoItem": true
+    }, {
+        "ImageUrl": "https:\/\/images.mcdelivery.co.in\/hardcastle-restaurants-pvt-ltd\/image\/upload\/fl_lossy,q_auto:low,IMGSIZE\/v1479732124\/Items\/310.png",
+        "Size": 1,
+        "ProductID": "310",
+        "Amount": "0.00",
+        "Currency": "₹",
+        "Quantity": "1",
+        "Title": "Promo McChicken",
+        "CustomisedDescription": "",
+        "SequenceID": 3,
+        "IsPromoItem": true
+    }, {
+        "ImageUrl": "https:\/\/images.mcdelivery.co.in\/hardcastle-restaurants-pvt-ltd\/image\/upload\/fl_lossy,q_auto:low,IMGSIZE\/v1479732124\/Items\/310.png",
+        "Size": 1,
+        "ProductID": "310",
+        "Amount": "0.00",
+        "Currency": "₹",
+        "Quantity": "1",
+        "Title": "Promo McChicken",
+        "CustomisedDescription": "",
+        "SequenceID": 3,
+        "IsPromoItem": true
+    }, {
+        "ImageUrl": "https:\/\/images.mcdelivery.co.in\/hardcastle-restaurants-pvt-ltd\/image\/upload\/fl_lossy,q_auto:low,IMGSIZE\/v1479732132\/Items\/2881.png",
+        "Size": 1,
+        "ProductID": "2881",
+        "Amount": "0.00",
+        "Currency": "₹",
+        "Quantity": "1",
+        "Title": "Promo Chicken Maharaja Mac",
+        "CustomisedDescription": "",
+        "SequenceID": 3,
+        "IsPromoItem": true
+    }];
+
+
+    var products=Array.from(originalProducts);//originalProducts.slice();
+    console.log('original array', originalProducts);
+
+
+
+    /*code to find group in array*/
+    var counter = {};
+    // products.forEach(function(obj) {
+    //     var key = obj.ProductID;
+    //     counter[key] = (counter[key] || 0) + 1;
+
+    // });
+
+    for (var i = 0; i < products.length; i++) {
+        var key = products[i].ProductID;
+        counter[key] = (counter[key] || 0) + 1;
+
+    }
+
+
+
+
+
+    /*function to check if the list conatins same object*/
+
+    function containsObject(obj, list) {
+        var x;
+        for (x in list) {
+            /* if (list.hasOwnProperty(x) && list[x] === obj) {
+                 return true;
+             }*/
+            if (obj.ProductID == list[x].ProductID) {
+                return true;
+            }
+        }
+
+        return false;
+    }
+
+
+
+
+
+
+
+    var finalArray = [];
+
+
+    for (var i = 0; i < products.length; i++) {
+
+
+        if (!containsObject(products[i], finalArray)) {
+
+            finalArray.push(products[i]);
+        }
+
+    }
+
+
+
+
+
+    for (var i = 0; i < finalArray.length; i++) {
+
+        for (var counterItem in counter) {
+            if (counterItem == finalArray[i].ProductID) {
+                finalArray[i].Quantity = counter[counterItem].toString();
+            }
+
+        }
+
+
+    }
+
+
+
+
+
+
+
+
+
+    console.log('final Array', finalArray);
+    </script>
+</body>
+
+</html>
